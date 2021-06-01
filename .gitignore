@@ -127,3 +127,9 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# acados json file
+*.json
+
+# acados generated code directory
+c_generated_code
