@@ -37,13 +37,13 @@ nlp_dims.N   = N
 # set weighting matrices
 nlp_cost = ra.cost
 Q = np.eye(nx)
-# Q[0,0] = 10.0      # x
-# Q[1,1] = 10.0      # y
+Q[0,0] = 10.0      # x
+Q[1,1] = 10.0      # y
 Q[2,2] = 0.0001      # psi
 
 R = np.eye(nu)
 R[0,0] = 0.1         # v
-R[1,1] = 50.01       # w
+R[1,1] = 0.1       # w
 
 nlp_cost.W = scipy.linalg.block_diag(Q, R)
 
@@ -154,15 +154,34 @@ if run_simulation:
 
     plt.subplot(3,2,1)
     plt.plot(simX[:, 0])
+    plt.grid()
+    plt.ylabel("x")
+
     plt.subplot(3,2,2)
     plt.plot(simX[:, 1])
+    plt.grid()
+    plt.ylabel("y")
+
     plt.subplot(3,2,3)
     plt.plot(simX[:, 2])
+    plt.grid()
+    plt.ylabel("psi")
     plt.subplot(3,2,4)
+
     plt.plot(simX[:, 0], simX[:, 1])
+    plt.grid()
+    plt.xlabel("x")
+    plt.ylabel("y")
 
     plt.subplot(3,2,5)
     plt.plot(simU[:, 0])
+    plt.grid()
+    plt.ylabel("v")
+
     plt.subplot(3,2,6)
     plt.plot(simU[:, 1])
+    plt.grid()
+    plt.ylabel("w")
+
+    plt.tight_layout()
     plt.show()
